@@ -1,0 +1,405 @@
+.prontusPlayerVideoPlayer {
+    width: 100%;
+    height: 100%;
+}
+
+.prontusPlayer{
+    overflow: hidden;
+}
+
+.prontusPlayerContent {
+    position: relative; /* Dimension para el desplazamiento */
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.prontusPlayArea {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.prontusPlayArea.no-image{
+    background: #FFF;
+    filter: alpha(opacity=15);
+    opacity: 0.15;
+}
+
+.prontusPlayArea.image{
+    background: 50% 50% no-repeat;
+    opacity: 1;
+}
+
+.prontusPlayButton{
+    width: 120px;
+    height: 60px;
+    cursor: pointer;
+    border: none;
+    padding: 0px;
+    background: #000;
+    filter: alpha(opacity=80);
+    opacity: 0.80;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.playIcon{
+    border-top: 15px solid transparent;
+    border-left: 30px solid white;
+    border-bottom: 15px solid transparent;
+    position: relative;
+    top: 15px;
+    left: 50px;
+}
+
+.prontusPlayerError{
+    display: none;
+    height: 30px;
+    text-align: center;
+    padding-top: 15px;
+    background: #000;
+    color: #F00;
+    font-size: 16px;
+}
+
+/* base styles */
+.prontusVideoPlay, .prontusVideoVolumeButton {
+    cursor: pointer;
+}
+
+.prontusVideoTimer {
+    cursor: default;
+}
+
+
+/* Start of simpledark default theme */
+.prontusHTML5Player.simpledark {
+    float: left;
+    position: relative;
+
+
+    -moz-border-radius: 5px; /* FF1+ */ /* Saf3+, Chrome */ /* Opera 10.5, IE 9 */
+
+    width: 100%;
+    height: 100%;
+    background: #000; /* FF3.6 */ /* Saf4+, Chrome */
+
+}
+
+.prontusHTML5Player.simpledark .prontusVideoControls {
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    top: -30px;
+    float: left;
+    clear: both;
+    width: 100%;
+    background: black;     filter: alpha(opacity=80);     opacity: 0.80;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoPlay, .prontusHTML5Player.simpledark .prontusVideoSeek, .prontusHTML5Player.simpledark .prontusVideoVolumeBox, .prontusVideoTimer {
+    float: left;
+}
+
+/* play, pause */
+.prontusHTML5Player.simpledark .prontusVideoPlay {
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin-right: 15px;
+    margin-left: 10px;
+    background: url(../img/play-icon.png) no-repeat;	
+    -moz-transition: all 0.2s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.2s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.2s ease-in-out;  /* Opera */
+    transition: all 0.2s ease-in-out; 
+    float: left;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoPauseButton {
+    background: url(../img/pause-icon.png) no-repeat;
+}
+
+
+.prontusHTML5Player.simpledark video {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+
+.prontusHTML5Player.simpledark .prontusVideoPlay:hover {	
+    opacity: 1;
+}
+
+/* seek */
+.prontusHTML5Player.simpledark .prontusVideoSeek {
+    position:relative;		
+    width: 100%;
+    height: 10px;
+    margin-top: 5px;	
+    border: 1px solid #494949;
+
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+
+    background: #535353;
+    background-image: -moz-linear-gradient(top, #535353, #333333);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #535353),color-stop(1, #333333));
+
+    box-shadow: inset 0 -3px 3px #333333;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoSeek .ui-slider-handle {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #333;
+    top: -4px;
+
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;	
+
+    background: #e6e6e6;
+    background-image: -moz-linear-gradient(top, #e6e6e6, #d5d5d5);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #e6e6e6),color-stop(1, #d5d5d5));
+
+    box-shadow: inset 0 -3px 3px #d5d5d5;	
+}
+
+.prontusHTML5Player.simpledark .prontusVideoSeek .ui-slider-handle.ui-state-hover {
+    background: #fff;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoSeek .ui-slider-range {
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+
+    background: #4cbae8;
+    background-image: -moz-linear-gradient(top, #4cbae8, #39a2ce);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #4cbae8),color-stop(1, #39a2ce));
+
+    box-shadow: inset 0 -3px 3px #39a2ce;
+}
+
+
+/* timer */
+.prontusHTML5Player.simpledark .prontusVideoTimer {
+    margin-top: 5px;
+    margin-left: 15px;
+
+    margin-right: 15px;
+    color: #D8D4D4;
+    font-size: 0.7em;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+    float: right;
+}
+
+/* volume */
+.prontusHTML5Player.simpledark .prontusVideoVolumeBox {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    width: 20px;
+    height: 30px;
+    color: #fff;
+    padding: 0px 10px;
+
+    -moz-transition: all 0.1s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.1s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.2s ease-in-out;  /* Opera */
+    transition: all 0.1s ease-in-out; 
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeBox:hover {	
+    height: 135px;
+    padding-top: 5px;
+}
+
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeBox:hover .prontusVideoVolumeSlider {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeSlider {	
+    position: relative;
+    height: 100px;
+    width: 7px;
+    left: 4px;
+
+    visiblity: hidden;
+    opacity: 0;
+
+    border: 1px solid #444;
+
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+
+    background: #535353;
+    background-image: -moz-linear-gradient(top, #535353, #333333);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #535353),color-stop(1, #333333));
+
+    box-shadow: inset 0 3px 3px #333333;
+
+    -moz-transition: all 0.1s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.1s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.1s ease-in-out;  /* Opera */
+    transition: all 0.1s ease-in-out; 
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeSlider .ui-slider-handle {
+    width: 12px;
+    height: 12px;
+    left: -4px;
+    margin-bottom:-0.6em;
+    margin-left:0;
+    border: 1px solid #333;	
+
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;	
+
+    background: #e6e6e6;
+    background-image: -moz-linear-gradient(top, #e6e6e6, #d5d5d5);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #e6e6e6),color-stop(1, #d5d5d5));
+
+    box-shadow: inset 0 3px 3px #d5d5d5;	
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeSlider .ui-slider-handle.ui-state-hover {
+    background: #fff;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeSlider .ui-slider-range {
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+
+    background: #e6e6e6;
+    background-image: -moz-linear-gradient(top, #e6e6e6, #d5d5d5);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #e6e6e6),color-stop(1, #d5d5d5));
+
+    box-shadow: inset 0 3px 3px #d5d5d5;
+}
+
+/* volume button */
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeButton {
+    position: absolute;
+    bottom: 0px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: url(../img/volume-full-icon.png) no-repeat;
+    text-indent: -9999px;
+
+    opacity: 0.8;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeButton:hover {
+    opacity: 1;
+}
+
+.prontusHTML5Player.simpledark .prontusVideoVolumeMute {
+    background: url(../img/volume-mute-icon.png) no-repeat;
+}
+
+
+/* Start of smalldark child theme */
+
+.prontusHTML5Player.smalldark {
+    padding: 0px;
+}
+
+
+
+.prontusHTML5Player.smalldark .prontusVideoControls {
+    position: absolute;
+    top: 150px;
+    left: 80px;
+    width: 320px;
+    padding: 10px;
+
+    border: 1px solid #2E2E2E;
+
+    -moz-border-radius: 5px; /* FF1+ */
+    -webkit-border-radius: 5px; /* Saf3+, Chrome */
+    border-radius: 5px; /* Opera 10.5, IE 9 */
+
+    background: #000000;
+    background-image: -moz-linear-gradient(top, #313131, #000000); /* FF3.6 */
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #313131),color-stop(1, #000000)); /* Saf4+, Chrome */
+
+    visibility: visible;
+    opacity: 1;
+
+    box-shadow: inset 0 15px 35px #535353;
+
+    -moz-transition: all 0.1s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.1s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.1s ease-in-out;  /* Opera */
+    transition: all 0.1s ease-in-out; 
+}
+
+.prontusHTML5Player.smalldark .prontusVideoSeek {
+    width: 200px;
+}
+
+.prontusHTML5Player.smalldark .prontusVideoVolumeBox {
+    bottom: 10px;
+}
+
+.prontusHTML5Player.smalldark .prontusVideoVolumeBox:hover {	
+    height: 85px;	
+}
+
+.prontusHTML5Player.smalldark .prontusVideoVolumeSlider {
+    height: 50px;
+}
+
+/* needed jquery ui styles
+ * using these, we don't depend on jQuery UI's stylsheet
+ */
+.ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    margin-left:-0.6em;
+    cursor: default;
+    outline: none;
+}
+
+.ui-slider-range {
+    display:block;
+    width:100%;	
+    height:100%;
+    left:0;
+    bottom: 0;
+    border:0 none;
+    position:absolute;
+    z-index:1;
+}
+
+.prontusSeekContainer {
+    margin: 0px 70px 0px 50px;
+}

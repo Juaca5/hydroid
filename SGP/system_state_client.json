@@ -1,0 +1,9 @@
+{
+    "remoteConection":true,//ver si tenemos ping a pi  (critico reiniciar)
+    "serverUp":true, //revisar archivo estatico nginx (critico reiniciar) 
+    "streamOn":true, //revisar archivo estatico nginx ver variables (reiniciar ffmpeg) 
+    "recorder":true, //escribir pid (permite grabar o no grabar)
+    "freeSpace":6459, // permite saber cuanto espacio queda. (info)
+}
+
+
