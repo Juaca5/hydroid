@@ -12,11 +12,12 @@
             <div class="header">
                 <nav>
                     <ul class="nav pull-right nav-menu">
-                        <li class="blue"><a href="index.php" class="large-button">Home</a></li>
-                        <li class="active grey"><a href="#" class="large-button">Biblioteca</a></li>
+                        <li class="active grey"><a href="index.php" class="large-button">Home</a></li>
+                        <li class="blue"><a href="#" class="large-button">Biblioteca</a></li>
                     </ul>
                 </nav>
-                <h2 class="text-muted">Mar Dínamica</h2>
+                <h2 class="text-muted">Sistema Hydroid</h2>
+                <h4 class="text-muted" style="padding-left: 90px;">Mar Dinámica</h4>
             </div>
             <div class="container">
             <!-- Example row of columns -->

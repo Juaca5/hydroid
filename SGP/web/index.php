@@ -13,32 +13,10 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 <!-- codigo añadido -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
-  setInterval( refreshDatos, 500 );
-  var inRequest = false;
-  function refreshDatos() {
-    if ( inRequest ) {
-      return false;
-    }
-    inRequest = true;
-    var load = $.get('add.php');
-   // $(".Datos").html('Refreshing');
-    load.error(function() {
-      console.log( "Error" );
-      // do something here if request failed
-    });
-    load.success(function( res ) {
-      //console.log( "Success" );
-      $(".nav2").html(res);
-    });
-    load.done(function() {
-      //console.log( "Completed" );
-      inRequest = false;
-    });
-  }
-</script>
 
     <!-- Lineas agragadas -->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -46,25 +24,39 @@
         <?php include '_include_heads.html'; ?>
         
     </head>
-    <body>
+    <body ng-app="Hydroid" ng-controller="myCtrl">
         <div class="container">
             <div class="header">
+                <nav>
+                    <ul class="nav pull-right nav-menu">
+                        <li class="blue"><a href="#" class="large-button">Home</a></li>
+                        <li class="active grey"><a href="biblioteca.php" class="large-button">Biblioteca</a></li>
+                    </ul>
+                </nav>
                 <h2 class="text-muted">Sistema Hydroid</h2>
+                <h4 class="text-muted" style="padding-left: 90px;">Mar Dinámica</h4>
             </div>
+
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 ng-cloak" style="margin-top: 55px;">
+                        <!--ul class="nav sidebar">
                     <nav>
-                        <ul class="nav sidebar">
                             <li class="active blue"><a href="#" class="large-button">Home</a></li>
                             <li class="active grey"><a href="biblioteca.php" class="large-button">Biblioteca</a></li>
-                            <!-- Sensores-->
-                        </ul>
-                        <ul class=nav2>
-                            <li class="active green"><a href="#" class="large-button">Temp.  : </a></li>
-                            <li class="active green"><a href="#" class="large-button">Brujula: </a></li>
-                            <li class="active green"><a href="#" class="large-button">Presion:</a></li>
-                        </ul>
+                            < Sensores>
                     </nav>
+                        </ul-->
+                        <div class="alert active green" ng-show="!error" style="border: 1px solid #444;">
+                            <h3 style="margin-top: 0px;">Indicadores</h3>
+                            <table>
+                                <tr><td>Temperatura </td><td>: {{temperatura}}</td></tr>
+                                <tr><td>Brújula</td><td>: {{brujula}}</td></tr>
+                                <tr><td>Presión</td><td>: {{presion}}</td></tr>
+                            </table>
+                        </div>
+                        <div class="alert alert-danger" ng-show="error">
+                            Error: {{error}}
+                        </div>
                 </div>
                 <div class="col-md-9">
                     <div id="container">
@@ -93,7 +85,7 @@
                         </button>
                     </div>
                 </div>
-		<!-- agregado sensor -->
+            <!-- agregado sensor -->
 			<div id="Medidores" ></div>
 
             </div>
@@ -102,13 +94,40 @@
                 <p>Mardinamica © Company 2015</p>
             </footer>
         </div>
-        <div class="Datos"></div>
-
+        <div class="container Datos"></div>
+        
         <script>
             $(document).ready(function () {
                 mainStream.init();
             });
         </script>
+
+        <script>
+        var app = angular.module('Hydroid', []);
+        app.controller('myCtrl', function($scope, $http, $sce) {
+
+            $scope.inRequest = false;
+            $scope.sourceURL = 'add.php'
+
+            $scope.myTimer = function(){
+                $http.get($sce.trustAsResourceUrl($scope.sourceURL))
+                .then(function(response) {
+                    if (response.data.error){
+                        $scope.error = response.data.error;
+                    }else{
+                        $scope.error        = undefined;
+                        $scope.temperatura  = response.data.temperatura;
+                        $scope.presion      = response.data.presion;
+                        $scope.brujula      = response.data.brujula;
+                    }
+                }, function(response) {
+                    $scope.error = "Error de conexión";
+                });
+            };
+            setInterval($scope.myTimer, 500);
+        });
+        </script>
+
 
     </body>
 </html>
