@@ -20,7 +20,7 @@ if (mysqli_connect_errno()) {
 
 }else{
 	// Realizar una consulta MySQL
-	$query = 'SELECT * FROM valores limit 1'; // ORDER BY fecha (siempre obtener el último)
+	$query = 'SELECT * FROM valores  ORDER BY fecha desc limit 1'; // (siempre obtener el último)
 	$result = $mysqli->query($query);
 	$response = $result->fetch_assoc();
 	//var_dump($response);

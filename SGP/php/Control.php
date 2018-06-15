@@ -8,6 +8,10 @@
 	$pid=exec("pidof $proceso");
 
 	if(strcmp($_GET["action"],"start") == 0){
+
+		// DROP table 
+		dropTableValores();
+
 		//system("python /var/www/html/SGP/web/py/chat_client.py 127.0.0.1 9009 stream &");
 		if($pid ==null || $pid == '') {
 			$hoy=getdate();
@@ -62,8 +66,7 @@
 		echo "Opción invalida $QUERY_STRING";
 	}
 	
-	function subtitulos($nombreVideo,$pathSubtitulo){
-		
+	function subtitulos($nombreVideo,$pathSubtitulo){	
 		$pdo=new PDO("mysql:dbname=sensores;host=127.0.0.1","root","stream");
 		// Buscar Último Dato
 		$timestamp = '2018-01-17 11:24:00';
@@ -97,4 +100,29 @@
 	       	echo ("error $e");
 	   	}
 	}
+
+
+	function dropTableValores(){
+		$db_database = 'sensores';
+		$db_hostname = 'localhost';
+		//$db_username = 'user';
+		//$db_password = 'pass';
+		$db_username = 'root';
+		$db_password = '';
+		// Conectar a la base de datos
+		$mysqli = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+
+		// Buscamos posibles errores en la conexión
+		if (mysqli_connect_errno()) {
+		    exit();
+		}else{
+			// Realizar una consulta MySQL
+			$query = 'DELETE FROM valores WHERE 1'; // borrar todo
+			$result = $mysqli->query($query);
+			$result->free();
+			$mysqli->close();
+		}
+	}
+
+
 ?>

@@ -4,7 +4,7 @@ $pdo=new PDO("mysql:dbname=basededatos;host=127.0.0.1","root","stream");
 switch($_GET['q']){
 		// Buscar Último Dato
 		case 1:
-		    $statement=$pdo->prepare("SELECT humedad,temperatura FROM tblsensores ORDER BY id DESC LIMIT 0,1");
+		    $statement=$pdo->prepare("SELECT humedad, temperatura FROM tblsensores ORDER BY id DESC LIMIT 0,1");
 			$statement->execute();
 			$results=$statement->fetchAll(PDO::FETCH_ASSOC);
 			$json=json_encode($results);

@@ -38,15 +38,16 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 ng-cloak" style="margin-top: 55px;">
-                        <!--ul class="nav sidebar">
-                    <nav>
-                            <li class="active blue"><a href="#" class="large-button">Home</a></li>
-                            <li class="active grey"><a href="biblioteca.php" class="large-button">Biblioteca</a></li>
-                            < Sensores>
-                    </nav>
-                        </ul-->
-                        <div class="alert active green" ng-show="!error" style="border: 1px solid #444;">
+                <div class="col-md-3 ng-cloak" style="margin-top: 55px; z-index: 3;">
+                        <div class="alert active col-sm-6 col-md-12" style="border: 1px solid #444;">
+                            <h3 style="margin-top: 0px;">Luces <a class="btn btn-primary" ng-click="changeLights()">{{light}}</a></h3>
+                            <div>
+                                <a style="margin: 0px 3px; padding: 5px 12px; border-radius: 50%; border: 1px solid #fff;" ng-class="{'btn-default': light > 0}"></a>
+                                <a style="margin: 0px 3px; padding: 5px 12px; border-radius: 50%; border: 1px solid #fff;" ng-class="{'btn-default': light > 1}"></a>
+                                <a style="margin: 0px 3px; padding: 5px 12px; border-radius: 50%; border: 1px solid #fff;" ng-class="{'btn-default': light > 2}"></a>
+                            </div>
+                        </div>
+                        <div class="alert active col-sm-6 col-md-12" ng-show="!error" style="border: 1px solid #444;">
                             <h3 style="margin-top: 0px;">Indicadores</h3>
                             <table>
                                 <tr><td>Temperatura </td><td>: {{temperatura}}</td></tr>
@@ -54,7 +55,7 @@
                                 <tr><td>Presión</td><td>: {{presion}}</td></tr>
                             </table>
                         </div>
-                        <div class="alert alert-danger" ng-show="error">
+                        <div class="alert active col-xs-12 alert-danger" ng-show="error">
                             Error: {{error}}
                         </div>
                 </div>
@@ -91,7 +92,7 @@
             </div>
 
             <footer class="footer">
-                <p>Mardinamica © Company 2015</p>
+                <p style="text-align: right;">Mardinamica © Company 2015</p>
             </footer>
         </div>
         <div class="container Datos"></div>
@@ -107,24 +108,46 @@
         app.controller('myCtrl', function($scope, $http, $sce) {
 
             $scope.inRequest = false;
-            $scope.sourceURL = 'add.php'
+            $scope.sourceURL = 'add.php';
+            $scope.lightsURL = 'lights.php';
+            $scope.light     = 0;
 
             $scope.myTimer = function(){
                 $http.get($sce.trustAsResourceUrl($scope.sourceURL))
                 .then(function(response) {
-                    if (response.data.error){
-                        $scope.error = response.data.error;
+                    if(response.data){
+                        if (response.data.error){
+                            $scope.error = response.data.error;
+                        }else{
+                            $scope.error        = undefined;
+                            $scope.temperatura  = response.data.temperatura;
+                            $scope.presion      = response.data.presion;
+                            $scope.brujula      = response.data.brujula;
+                        }
                     }else{
-                        $scope.error        = undefined;
-                        $scope.temperatura  = response.data.temperatura;
-                        $scope.presion      = response.data.presion;
-                        $scope.brujula      = response.data.brujula;
+                            $scope.error        = 'No hay valores en la base de datos!';
+                            $scope.temperatura  = null;
+                            $scope.presion      = null;
+                            $scope.brujula      = null;
                     }
                 }, function(response) {
                     $scope.error = "Error de conexión";
                 });
             };
             setInterval($scope.myTimer, 500);
+
+
+            $scope.changeLights = function(){
+                $scope.light = $scope.light >= 3? 0: $scope.light+1;
+                $http.get($sce.trustAsResourceUrl($scope.lightsURL+'?LED='+$scope.light))
+                .then(function(response) {
+                    console.log(response.data);
+                }, function(response) {
+                    console.log("Error de conexión");
+                });
+            };
+
+
         });
         </script>
 
